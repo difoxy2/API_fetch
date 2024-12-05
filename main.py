@@ -2,13 +2,14 @@ import requests
 import smtplib, ssl
 import os
 import datetime as DT
+import pw
 
 
 today = DT.date.today()
 week_ago = today - DT.timedelta(days=7)
 
 #fetch
-newsapi_apikey='7f3f49a487e9462f9194754fad1a2463'
+newsapi_apikey=pw.newsapi_apikey
 keyword='nintendo'
 url='https://newsapi.org/v2/everything?'\
     f'q={keyword}'\
@@ -31,9 +32,9 @@ message = message.encode('ascii', 'ignore')
 host = 'smtp.gmail.com'
 port = 465
 context = ssl.create_default_context()
-username='bigdk0900ft@gmail.com'
-password=os.getenv('GOOGLE_APP_PW_1')
-receiver='bigdk0900ft@gmail.com'
+username=pw.username
+password=pw.password
+receiver=pw.receiver
 
 with smtplib.SMTP_SSL(host,port,context=context) as server:
     server.login(username,password)
