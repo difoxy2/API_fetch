@@ -25,7 +25,7 @@ article_list=[i for i in r_dict['articles'] if i['source']['name'] != '[Removed]
 message=f"Subject: {keyword.capitalize()}'s news from last week\n"
 for i in article_list[:20]:
     message += i['title'] + '\n' + i['description'] + '\n' + i['url'] + '\n\n'
-message = message.encode('ascii', 'ignore')
+message = message.encode('utf-8')
 
 
 #send email
